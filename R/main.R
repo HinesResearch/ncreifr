@@ -34,10 +34,20 @@ NCREIF<-function(SelectString,WhereString,GroupByString,Username,Password,verbos
                           "Content-Type" = "text/xml; charset=utf-8"
   )
   t1<-curl::curl_fetch_memory("https://www.ncreif.org/ncreif/webservice/querybuilder.asmx", h)
+  if(t1$status_code==200){
   t2<-XML::xmlParse(rawToChar(t1$content))
   results <- XML::xmlToDataFrame(nodes=XML::getNodeSet(t2, "//Result1"))
   if("YYYYQ" %in% colnames(results)){
     results$Date<-data.frame(Date=as.Date(paste(substr(results$YYYYQ,1,4),as.numeric(substr(results$YYYYQ,5,5))*3,ifelse(substr(results$YYYYQ,5,5) %in% c("4","1"),31,30),sep="-"),"%Y-%m-%d"))
   }
-  if(verbose){return(XML::xmlParse(rawToChar(t1$content)))}else{return(results)}
+  if(verbose){return(t1)}else{return(results)}
+  }else{
+
+    t2<-XML::xmlParse(rawToChar(t1$content))
+    errorstring<-XML::xmlToDataFrame(nodes=XML::getNodeSet(t2, "//faultstring"))
+    errorstring<-substr(errorstring,unlist(gregexpr("System.Data.SqlClient.SqlException:",errorstring))[1]+36,nchar(errorstring))
+    errorstring<-substr(errorstring,1,unlist(gregexpr("\n",errorstring))[1]-1)
+    stop(paste0("API Error: ",errorstring))
+  }
+
 }
