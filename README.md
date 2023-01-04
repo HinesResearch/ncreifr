@@ -7,9 +7,10 @@ The tool is designed to make quering the NCREIF API simple. The NCREIF API requi
 3. The Group By Statement
 4. Credentials (username and password)
 
-Getting Started:
+<h1>Getting Started:</h1>
 
-Installation:
+<b>Installation:</b>
+
 The package can be installed from Github with the devtools library:
 ```r
 install.packages("devtools")
@@ -18,8 +19,9 @@ devtools::install_github('erikb-thomas/ncreifr')
 ```
 
 
-Quering NCREIF:
+<b>Quering NCREIF:</b>
 
+You can use the NCREIF() function to query the API:
 ```r
 library(ncreifr)
 SelectString="SUM([NOI]) AS NOI,SUM([CapEx])AS CapEx, SUM([MV]) AS MV,SUM([MVLag1])AS MVLag1, SUM([PSales])AS PSales, Round(SUM([Denom]),4) AS Denom, Round(Sum([NOI]) / Sum([Denom]),4) AS IncomeReturn,Round((Sum([MV])-Sum([MVLag1])-Sum([CapEx])+Sum([PSALES]))/(Sum([DENOM])),4) AS CapitalReturn, Round((Sum([NOI]) / Sum([Denom]))+(Sum([MV])-Sum([MVLag1])-Sum([CapEx])+Sum([PSALES]))/(Sum([DENOM])),4) AS TotalReturn,Count([MV]) AS PropCount"
