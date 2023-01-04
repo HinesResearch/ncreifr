@@ -1,5 +1,7 @@
 # ncreifr
-ncreifr is an r package that allows user to query the National Council of Real Estate Investment Fiduciaries (NCREIF) query tool apis. The package requires a username and password with access to the NCREIF API. 
+ncreifr is an r package that allows user to query the National Council of Real Estate Investment Fiduciaries (NCREIF) query tool apis. 
+This package is independently developed and not associated or endorsed by the NCREIF organization.
+The package requires a username and password with access to the NCREIF API. 
 
 The tool is designed to make quering the NCREIF API simple. The NCREIF API requires 4 inputs to recieve data:
 1. The Select Statement
