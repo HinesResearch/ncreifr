@@ -40,7 +40,9 @@ NCREIF<-function(SelectString,WhereString,GroupByString,Username,Password,verbos
   if("YYYYQ" %in% colnames(results)){
     results$Date<-data.frame(Date=as.Date(paste(substr(results$YYYYQ,1,4),as.numeric(substr(results$YYYYQ,5,5))*3,ifelse(substr(results$YYYYQ,5,5) %in% c("4","1"),31,30),sep="-"),"%Y-%m-%d"))
   }
-  if(verbose){return(t1)}else{return(results)}
+  if(verbose){return(t1)}else{
+    for(i in which(!colnames(results) %in% c(strsplit(gsub("\\]","",gsub("\\[","",GroupByString)),",")[[1]],"Date"))){results[,i]<-as.numeric(results[,i])}
+    return(results)}
   }else{
 
     t2<-XML::xmlParse(rawToChar(t1$content))
@@ -51,3 +53,7 @@ NCREIF<-function(SelectString,WhereString,GroupByString,Username,Password,verbos
   }
 
 }
+
+
+
+
