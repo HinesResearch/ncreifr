@@ -29,11 +29,11 @@ NCREIF<-function(SelectString,WhereString,GroupByString,Username,Password,verbos
   </soap:Body>
   </soap:Envelope>')
 
-  h <- curl::new_handle(url = "https://www.ncreif.org/ncreif/webservice/querybuilder.asmx", postfields = body)
+  h <- curl::new_handle(url = "https://user.ncreif.org/ncreif/webservice/QueryBuilder.asmx", postfields = body)
   curl::handle_setheaders(h,
                           "Content-Type" = "text/xml; charset=utf-8"
   )
-  t1<-curl::curl_fetch_memory("https://www.ncreif.org/ncreif/webservice/querybuilder.asmx", h)
+  t1<-curl::curl_fetch_memory("https://user.ncreif.org/ncreif/webservice/QueryBuilder.asmx", h)
   if(t1$status_code==200){
   t2<-XML::xmlParse(rawToChar(t1$content))
   results <- XML::xmlToDataFrame(nodes=XML::getNodeSet(t2, "//Result1"))
