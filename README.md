@@ -25,7 +25,7 @@ devtools::install_github('erikb-thomas/ncreifr')
 
 You can use the NCREIF() function to query the API:
 ```r
-library(ncreifr)
+library(NCREIFR)
 SelectString="SUM([NOI]) AS NOI,SUM([CapEx])AS CapEx, SUM([MV]) AS MV,SUM([MVLag1])AS MVLag1, SUM([PSales])AS PSales, Round(SUM([Denom]),4) AS Denom, Round(Sum([NOI]) / Sum([Denom]),4) AS IncomeReturn,Round((Sum([MV])-Sum([MVLag1])-Sum([CapEx])+Sum([PSALES]))/(Sum([DENOM])),4) AS CapitalReturn, Round((Sum([NOI]) / Sum([Denom]))+(Sum([MV])-Sum([MVLag1])-Sum([CapEx])+Sum([PSALES]))/(Sum([DENOM])),4) AS TotalReturn,Count([MV]) AS PropCount"
 WhereString="[NPI]=1"
 GroupByString="[Period],[YYYYQ] ,[Year],[Quarter]"
