@@ -14,12 +14,12 @@
 #' GroupByString="[Period],[YYYYQ] ,[Year],[Quarter]"
 #' NCREIF(SelectString,WhereString,GroupByString,readline("Enter Username"),readline("Enter Password"),FALSE)
 
-NCREIF<-function(SelectString,WhereString,GroupByString,Username,Password,verbose){
+NCREIF<-function(SelectString,WhereString,GroupByString,Username,Password,DataType=1,verbose){
   body = paste0('<?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body>
   <ExecuteQuery xmlns="http://tempuri.org/">
-  <p_DataTypeId>1</p_DataTypeId>
+  <p_DataTypeId>',DataType,'</p_DataTypeId>
   <p_SelectQuery>',SelectString,'</p_SelectQuery>
 <p_WhereClause>',WhereString,'</p_WhereClause>
   <p_GroupbyClause>',GroupByString,'</p_GroupbyClause>
