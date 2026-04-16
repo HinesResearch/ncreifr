@@ -15,7 +15,7 @@
 #' GroupByString="[Period],[YYYYQ] ,[Year],[Quarter]"
 #' NCREIF(SelectString,WhereString,GroupByString,readline("Enter Username"),readline("Enter Password"),FALSE)
 
-NCREIF<-function(SelectString,WhereString,GroupByString,Username,Password,DataType=1,verbose){
+NCREIF<-function(SelectString,WhereString,GroupByString,Username,Password,DataType=3,verbose){
   body = paste0('<?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body>
